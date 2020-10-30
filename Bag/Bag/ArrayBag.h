@@ -69,5 +69,7 @@ public:
 			vec.push_back(m_bag[i]);
 		return vec;
 	}
+
+	~ArrayBag() {}
 };
 

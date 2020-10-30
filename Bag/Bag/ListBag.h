@@ -45,15 +45,36 @@ public:
 	}
 
 	void Clear() override {
-		
+		Node<T>* temp = m_head;
+		while (temp) {
+			m_head = m_head->GetNext();
+			delete temp;
+			--size;
+			temp = temp->GetNext();
+		}
+
 	}
 
 	int GetFrequencyOf(const T& item) const override {
-		
+		int count = 0;
+		Node<T>* temp = m_head;
+		while (temp) {
+			if (temp->GetData() == item)
+				++count;
+			temp = temp->GetNext();
+		}
+		return count;
+
 	}
 
 	bool Contains(const T& item) const override {
-		
+		Node<T>* temp = m_head;
+		while (temp) {
+			if (temp->GetData() == item)
+				return true;
+			temp = temp->GetNext();
+		}
+		return false;
 	}
 
 	friend std::ostream& operator<<(std::ostream& out, const LinkedBag& bag) {
@@ -73,6 +94,10 @@ public:
 			temp = temp->GetNext();
 		}
 		return vec;
+	}
+
+	~LinkedBag() {
+		Clear();
 	}
 };
 
