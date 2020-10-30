@@ -50,7 +50,7 @@ public:
 			m_head = m_head->GetNext();
 			delete temp;
 			--size;
-			temp = temp->GetNext();
+			temp = m_head;
 		}
 
 	}

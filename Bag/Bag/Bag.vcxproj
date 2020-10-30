@@ -147,7 +147,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ListBag.h">
+    <ClInclude Include="LinkedBag.h">
       <SubType>
       </SubType>
     </ClInclude>

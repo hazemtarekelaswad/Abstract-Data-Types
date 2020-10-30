@@ -13,5 +13,4 @@ public:
 	virtual int GetFrequencyOf(const T& item) const = 0;
 	virtual bool Contains(const T& item) const = 0;
 	virtual std::vector<T> ToVector() const = 0;
-	virtual ~Bag() = 0;
 };
