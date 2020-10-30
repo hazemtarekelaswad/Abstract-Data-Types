@@ -22,19 +22,24 @@ public:
 	}
 
 	bool Add(const T& item) override {
-		if (size == Cap)
-			return false;
-		m_bag[size++] = item;
+		Node<T>* newNode = new Node<T>(item, m_head);
+		m_head = newNode;
+		++size;
 		return true;
 	}
 
 	bool Remove(const T& item) override {
-		for (int i = 0; i < size; ++i) {
-			if (m_bag[i] == item) {
-				m_bag[i] = m_bag[size - 1];
+		Node<T>* temp = m_head;
+		while (temp) {
+			if (temp->GetData() == item) {
+				temp->SetData(m_head->GetData());
+				temp = m_head;
+				m_head = m_head->GetNext();
+				delete temp;
 				--size;
 				return true;
 			}
+			temp = temp->GetNext();
 		}
 		return false;
 	}
