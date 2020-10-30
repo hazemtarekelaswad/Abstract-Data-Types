@@ -13,6 +13,39 @@ private:
 public:
 	LinkedBag() : m_head(nullptr), size(0) {}
 
+	LinkedBag(const LinkedBag& bag) : m_head(nullptr), size(0) {
+		Node<T>* temp = bag.m_head;
+		while (temp) {
+			Add(temp->GetData());
+			temp = temp->GetNext();
+		}
+		//std::cout << "COPIED\n";
+	}
+
+	LinkedBag(LinkedBag&& bag) {
+		m_head = bag.m_head;
+		size = bag.size;
+		bag.m_head = nullptr;
+		bag.size = 0;
+		//std::cout << "MOVED\n";
+	}
+
+	LinkedBag& operator=(LinkedBag bag) {
+		Swap(bag);
+		return *this;
+	}
+
+	void Swap(LinkedBag& bag) {
+		Node<T>* tempPtr = m_head;
+		int tempSize = size;
+
+		m_head = bag.m_head;
+		size = bag.size;
+
+		bag.m_head = tempPtr;
+		bag.size = tempSize;
+	}
+
 	int GetSize() const override {
 		return size;
 	}
