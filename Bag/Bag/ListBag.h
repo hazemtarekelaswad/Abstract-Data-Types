@@ -45,34 +45,33 @@ public:
 	}
 
 	void Clear() override {
-		size = 0;
+		
 	}
 
 	int GetFrequencyOf(const T& item) const override {
-		int count = 0;
-		for (int i = 0; i < size; ++i)
-			if (m_bag[i] == item)
-				++count;
-		return count;
+		
 	}
 
 	bool Contains(const T& item) const override {
-		for (int i = 0; i < size; ++i)
-			if (m_bag[i] == item)
-				return true;
-		return false;
+		
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, const ArrayBag& bag) {
-		for (int i = 0; i < bag.size; ++i)
-			out << bag.m_bag[i] << ' ';
+	friend std::ostream& operator<<(std::ostream& out, const LinkedBag& bag) {
+		Node<T>* temp = bag.m_head;
+		while (temp) {
+			out << temp->GetData() << ' ';
+			temp = temp->GetNext();
+		}
 		return out;
 	}
 
 	std::vector<T> ToVector() const override {
 		std::vector<T> vec(size);
-		for (int i = 0; i < size; ++i)
-			vec.push_back(m_bag[i]);
+		Node<T>* temp = m_head;
+		while (temp) {
+			vec.push_back(temp->GetData());
+			temp = temp->GetNext();
+		}
 		return vec;
 	}
 };
