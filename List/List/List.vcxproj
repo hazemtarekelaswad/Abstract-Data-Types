@@ -139,6 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ArrayList.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="List.h">
       <SubType>
       </SubType>
