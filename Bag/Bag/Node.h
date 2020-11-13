@@ -9,9 +9,7 @@ private:
 
 public:
 	Node() : next(nullptr) {}
-
 	Node(const T& data) : data(data), next(nullptr) {}
-
 	Node(const T& data, Node* node) : data(data), next(node) {}
 
 	void SetData(const T& data) {
