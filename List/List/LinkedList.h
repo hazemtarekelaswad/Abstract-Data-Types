@@ -22,6 +22,13 @@ public:
 		return size;
 	}
 	void Clear() override {
+		Node<T>* curr = m_head;
+		Node<T>* prev = nullptr;
+		while (curr) {
+			prev = curr;
+			curr = curr->GetNext();
+			delete prev;
+		}
 	}
 	bool Insert(int index, const T& item) override {
 		if (index < 0 || index > size)
@@ -46,8 +53,17 @@ public:
 	bool Remove(const T& item) override {
 	}
 	void Replace(int index, const T& item) override {
+		Node<T>* temp = m_head;
+		while (index--)
+			temp = temp->GetNext();
+		temp->SetData(item);
 	}
+
 	T GetItem(int index) const override {
+		Node<T>* temp = m_head;
+		while (index--)
+			temp = temp->GetNext();
+		return temp->GetData();
 	}
 
 	~LinkedList() {
