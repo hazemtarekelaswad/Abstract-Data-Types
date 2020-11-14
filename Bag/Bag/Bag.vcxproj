@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)..</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,10 +149,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="LinkedBag.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Node.h">
       <SubType>
       </SubType>
     </ClInclude>

@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
 #include "List.h"
+#include "Node.h"
 
 template<typename T>
 class LinkedList : public List<T> {
 private:
-	
+	Node<T>* m_head;
 	int size;
 
 public:
@@ -23,7 +24,6 @@ public:
 	}
 	bool Remove(const T& item) override {
 	}
-
 	void Replace(int index, const T& item) override {
 	}
 	T GetItem(int index) const override {
