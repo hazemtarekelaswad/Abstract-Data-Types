@@ -49,8 +49,41 @@ public:
 		return true;
 	}
 	bool RemoveAt(int index) override {
+		if (index < 0 || index >= size)
+			return false;
+
+		Node<T>* curr = m_head;
+		Node<T>* prev = nullptr;
+		while (index--) {
+			prev = curr;
+			curr = curr->GetNext();
+		}
+		if (!index)
+			m_head = m_head->GetNext();
+		else
+			prev->SetNext(curr->GetNext());
+		delete curr;
+		--size;
+		return true;
 	}
+
 	bool Remove(const T& item) override {
+		Node<T>* temp = m_head;
+		Node<T>* prev = nullptr;
+		while (temp) {
+			if (temp->GetData() == item) {
+				if (!prev)
+					m_head = m_head->GetNext();
+				else
+					prev->SetNext(temp->GetNext());
+				delete temp;
+				--size;
+				return true;
+			}
+			prev = temp;
+			temp = temp->GetNext();
+		}
+		return false;
 	}
 	void Replace(int index, const T& item) override {
 		Node<T>* temp = m_head;
