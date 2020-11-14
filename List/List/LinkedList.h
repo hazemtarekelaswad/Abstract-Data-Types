@@ -58,7 +58,7 @@ public:
 			prev = curr;
 			curr = curr->GetNext();
 		}
-		if (!index)
+		if (index == -1)
 			m_head = m_head->GetNext();
 		else
 			prev->SetNext(curr->GetNext());
@@ -86,6 +86,8 @@ public:
 		return false;
 	}
 	void Replace(int index, const T& item) override {
+		if (index < 0 || index >= size)
+			return;
 		Node<T>* temp = m_head;
 		while (index--)
 			temp = temp->GetNext();
