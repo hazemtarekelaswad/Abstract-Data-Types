@@ -48,6 +48,26 @@ public:
 		++size;
 		return true;
 	}
+
+	bool Insert(int index, const T& item) {
+		if (index < 1 || index > size + 1)
+			return false;
+		if (index == 1 || !head) {
+			Node<T>* newNode = new Node<T>(item, m_head);
+			m_head = newNode;
+			++size;
+			return true;
+		}
+		Node<T>* temp = m_head;
+		for (int i = 0; i < index - 2; ++i)
+			temp = temp->GetNext();
+		Node<T>* newNode = new Node<T>(item, temp->GetNext());
+		temp->SetNext(newNode);
+		++size;
+		return true;
+
+	}
+
 	bool RemoveAt(int index) override {
 		if (index < 0 || index >= size)
 			return false;
