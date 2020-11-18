@@ -4,9 +4,11 @@
 template<typename T>
 class Stack {
 public:
-	bool IsEmpty() const = 0;
-	bool IsFull() const = 0;
-	bool Push(const T& item) = 0;
-	bool Pop() = 0;
-	T Peek() = 0;
+	virtual bool IsEmpty() const = 0;
+	virtual bool IsFull() const = 0;
+	virtual bool Push(const T& item) = 0;
+	virtual bool Pop() = 0;
+	virtual T Peek() = 0;
+	virtual int Size() const = 0;
+	virtual void Print() const = 0;
 };
