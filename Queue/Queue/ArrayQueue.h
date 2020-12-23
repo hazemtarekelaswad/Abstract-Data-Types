@@ -15,13 +15,16 @@ public:
 	bool Enqueue(const T& item) {
 
 	}
-	bool Dequeue(const T& item) {
+	bool Dequeue(T& item) {
 
 	}
 	T Front() const {
 
 	}
-	T Back() const {
+	T Rear() const {
+
+	}
+	int GetSize() const {
 
 	}
 	void Print() const {
