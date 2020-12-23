@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <cassert>
+#include <cmath>
+#include <queue>
 #include "BiNode.h"
 #include "BiTree.h"
 
@@ -10,6 +12,27 @@ private:
 	BiNode<T>* root;
 	int count;
 
+	/*BiNode<T>*& LevelOrder(BiNode<T>*& subRoot) {
+		std::queue<BiNode<T>*> qu;
+		qu.push(subRoot);
+		while (!qu.empty()) {
+
+		}
+		if (!subRoot)
+			return subRoot;
+		return LevelOrder(subRoot->GetLeft());
+	}*/
+	/*void Insert(BiNode<T>*& subRoot, const T& item) {
+		BiNode<T>* newNode = new BiNode<T>(item);
+		if (!subRoot)
+			subRoot = newNode;
+		else {
+			Insert(subRoot->GetLeft(), item);
+			Insert(subRoot->GetRight(), item);
+		}
+		++count;
+	}*/
+
 public:
 	LinkedBiTree() : root(nullptr), count(0) {}
 
@@ -17,7 +40,7 @@ public:
 		root = new BiNode<T>(item);
 	}
 
-	LinkedBiTree(const LinkedBiTree<T>& biTree) {}
+	LinkedBiTree(const LinkedBiTree& biTree) = delete;
 
 	T GetRoot() const {
 		assert(!IsEmpty());
@@ -27,11 +50,20 @@ public:
 		return count;
 	}
 	bool IsEmpty() const {
-
+		return root == nullptr;
 	}
 	int GetHeight() const {
+		return ceil(log2(count + 1) - 1);
+	}
+
+	void Insert(const T& item) {
+		
+	}
+
+	void Delete() {
 
 	}
+
 	void Clear() {
 
 	}
@@ -39,5 +71,7 @@ public:
 
 	}
 
-	~LinkedBiTree() {}
+	~LinkedBiTree() {
+		Clear();
+	}
 };
