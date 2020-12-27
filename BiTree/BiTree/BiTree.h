@@ -1,7 +1,7 @@
 #pragma once
-/*
-	Following the convention that the root is at level 0
-*/
+
+//	Following the convention that the root is at level 0
+
 template<typename T>
 class BiTree {
 public:

@@ -3,41 +3,46 @@
 #include <cassert>
 #include <cmath>
 #include <queue>
-#include "BiNode.h"
+#include "LinkedBiNode.h"
 #include "BiTree.h"
 
 template<typename T>
 class LinkedBiTree : public BiTree<T> {
 private:
-	BiNode<T>* root;
+	LinkedBiNode<T>* root;
 	int count;
 
-	/*BiNode<T>*& LevelOrder(BiNode<T>*& subRoot) {
-		std::queue<BiNode<T>*> qu;
-		qu.push(subRoot);
-		while (!qu.empty()) {
-
-		}
-		if (!subRoot)
-			return subRoot;
-		return LevelOrder(subRoot->GetLeft());
-	}*/
-	/*void Insert(BiNode<T>*& subRoot, const T& item) {
-		BiNode<T>* newNode = new BiNode<T>(item);
-		if (!subRoot)
-			subRoot = newNode;
-		else {
-			Insert(subRoot->GetLeft(), item);
-			Insert(subRoot->GetRight(), item);
-		}
-		++count;
+	//static BiNode<T>* Insert(BiNode<T>* root) {
+	//	if (!root)
+	//		return nullptr;
+	//	queue<BiNode<T>*> trav;
+	//	trav.push(root);
+	//	while (!trav.empty()) {
+	//		if (trav.front()->left)
+	//			trav.push(trav.front()->left);
+	//		else
+	//			return trav.front();
+	//		if (trav.front()->right)
+	//			trav.push(trav.front()->right);
+	//		else
+	//			return trav.front();
+	//		//cout << trav.front()->data << ' ';
+	//		trav.pop();
+	//	}
+	//}
+	/*static void sPrint(BiNode<T>* root) const {
+		if (root == nullptr)
+			return;
+		Print(root->GetLeft());
+		cout << root->GetData() << ' ';
+		Print(root->GetRight());
 	}*/
 
 public:
 	LinkedBiTree() : root(nullptr), count(0) {}
 
 	LinkedBiTree(const T& item) : count(1) {
-		root = new BiNode<T>(item);
+		root = new LinkedBiNode<T>(item);
 	}
 
 	LinkedBiTree(const LinkedBiTree& biTree) = delete;
@@ -56,10 +61,6 @@ public:
 		return ceil(log2(count + 1) - 1);
 	}
 
-	void Insert(const T& item) {
-		
-	}
-
 	void Delete() {
 
 	}
@@ -67,9 +68,9 @@ public:
 	void Clear() {
 
 	}
-	void Print() const {
-
-	}
+	/*void Print() const {
+		sPrint(root);
+	}*/
 
 	~LinkedBiTree() {
 		Clear();
