@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
-#include <utility>
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <initializer_list>
 #include "Heap.h"
 
 template<typename T, int capacity>
@@ -75,6 +75,19 @@ private:
 
 public:
 	ArrayHeap() : size(0) {}
+
+	ArrayHeap(T* arr, int length) : size(0) {
+		assert(length <= capacity && length >= 0);
+		for (int i = 0; i < length; ++i)
+			Add(arr[i]);
+	}
+
+	ArrayHeap(const std::initializer_list<T>& list) : size(0) {
+		assert(list.size() <= capacity);
+		for (const T& item : list)
+			Add(item);
+	}
+
 	bool IsEmpty() const override {
 		return size == 0;
 	}
