@@ -5,7 +5,7 @@
 
 template<typename T>
 class LinkedList : public List<T> {
-private:
+protected:
 	Node<T>* m_head;
 	int size;
 
@@ -29,6 +29,7 @@ public:
 			curr = curr->GetNext();
 			delete prev;
 		}
+		m_head = nullptr;
 	}
 	bool Insert(int index, const T& item) override {
 		if (index < 0 || index > size)
