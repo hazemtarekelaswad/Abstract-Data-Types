@@ -23,5 +23,8 @@
     <ClInclude Include="Dictionary.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayDictionary.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
