@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cassert>
 #include "SortedList.h"
 #include "Node.h"
 
@@ -10,6 +11,8 @@ private:
 	int size_;
 public:
 	LinkedSortedList() : size_(0), head_(nullptr) {}
+
+	LinkedSortedList(const LinkedSortedList& lst) = delete;
 
 	void Insert(const T& item) {
 		Node<T>* newNode = new Node<T>(item);
@@ -27,15 +30,64 @@ public:
 		temp->SetNext(newNode);
 		++size_;
 	}
-	bool Remove(int index) {
-		return false;
+
+	bool RemoveAt(int index) {
+		if (index >= size_ && index < 0)
+			return false;
+
+		Node<T>* temp = head_;
+
+		if (index == 0) {
+			head_ = head_->GetNext();
+			delete temp;
+			--size_;
+			return true;
+		}
+
+		while (--index)
+			temp = temp->GetNext();
+		Node<T>* nodeToRemove = temp->GetNext();
+		temp->SetNext(nodeToRemove->GetNext());
+		delete nodeToRemove;
+		--size_;
+		return true;
+
 	}
+
 	bool Remove(const T& item) {
+		if (!head_)
+			return false;
+
+		Node<T>* temp = head_;
+
+		if (head_->GetData() == item) {
+			head_ = head_->GetNext();
+			delete temp;
+			--size_;
+			return true;
+		}
+
+		while (temp->GetNext()) {
+			if (temp->GetNext()->GetData() == item) {
+				Node<T>* nodeToRemove = temp->GetNext();
+				temp->SetNext(nodeToRemove->GetNext());
+				delete nodeToRemove;
+				--size_;
+				return true;
+			}
+			temp = temp->GetNext();
+		}
 		return false;
 	}
+
 	T GetItem(int index) const {
-		return head_->GetData();
+		assert(index < size_ && index >= 0);
+		Node<T>* temp = head_;
+		while (index--)
+			temp = temp->GetNext();
+		return temp->GetData();
 	}
+
 	int GetPosition(const T& item) {
 		Node<T>* temp = head_;
 		int index = 0;
