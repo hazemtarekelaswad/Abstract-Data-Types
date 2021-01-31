@@ -1,14 +1,27 @@
 #pragma once
 #include <iostream>
+#include "Defs.h"
 
 template<typename K, typename T>
 class Pair {
 private:
 	K key_;
 	T item_;
+
+	Status status_;
+	
 public:
-	Pair() {}
-	Pair(const K& key, const T& item) : key_(key), item_(item) {}
+	Pair() : status_(Status::EMPTY){}
+	Pair(const K& key, const T& item) : key_(key), item_(item), status_(Status::OCCUPIED) {}
+
+	void SetStatus(const Status& stat) {
+		status_ = stat;
+	}
+
+	Status GetStatus() const {
+		return status_;
+	}
+
 	void SetItem(const T& item) {
 		item_ = item;
 	}
