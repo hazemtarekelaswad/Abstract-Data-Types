@@ -49,7 +49,22 @@ public:
 	}
 
 	bool Remove(const K& key) override {
-		return false;
+		if (IsEmpty())
+			return false;
+
+		int hashedKey = Hash(key);
+		int step = 0;
+
+		while ((table_[(hashedKey + static_cast<int>(std::pow(step, static_cast<int>(probing_)))) % capacity]).GetKey() != key
+			&& (table_[(hashedKey + static_cast<int>(std::pow(step, static_cast<int>(probing_)))) % capacity]).GetStatus() == Status::OCCUPIED)
+			++step;
+
+		if ((table_[(hashedKey + static_cast<int>(std::pow(step, static_cast<int>(probing_)))) % capacity]).GetStatus() != Status::OCCUPIED)
+			return false;
+
+		(table_[(hashedKey + static_cast<int>(std::pow(step, static_cast<int>(probing_)))) % capacity]).SetStatus(Status::REMOVED);
+		--size_;
+		return true;
 	}
 
 	T GetItem(const K& key) override {
