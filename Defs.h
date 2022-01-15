@@ -1,4 +1,7 @@
 #pragma once
+
+// Enums for hash table implementation
+
 enum class Status { 
 	EMPTY, 
 	OCCUPIED, 
