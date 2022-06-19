@@ -9,7 +9,7 @@
 template<typename T>
 struct Edge {
 	T item;
-	mutable int status;		// 0 ==> processed | 1 ==> processed | 2 ==> pushed 
+	mutable int status;		// 0 ==> Unprocessed | 1 ==> processed | 2 ==> pushed 
 };
 
 template<typename T, int capacity>
